@@ -19,7 +19,7 @@ class RoomController extends Controller
     }
 
     public function index(){
-    	$rooms = $this->mRoom->getItems();
+    	$rooms = $this->mRoom->getItems(); 
 
     	return view('admin.room.index', compact('rooms'));
     }
@@ -69,6 +69,9 @@ class RoomController extends Controller
         $objItem = $this->mRoom->where('rid', '=', $id)->first();
         $hinhanh = $objItem->picture;
     	if ($request->file('hinhanh') != null) {
+            //delete image
+            Storage::delete('files/'.$hinhanh);
+            //add image
             $path = $request->file('hinhanh')->store('files');
             $tmp = explode('/', $path);
             $hinhanh = end($tmp);
@@ -79,6 +82,8 @@ class RoomController extends Controller
                     'uid' => $request->tienich,
                     'picture' => $hinhanh,
                     'description' => $request->mota,
+                    'cost' => $request->cost,
+                    'status' => $request->status,
                 );
         $resultEdit = $this->mRoom->editItem($id, $arItem);
         if ($resultEdit) {

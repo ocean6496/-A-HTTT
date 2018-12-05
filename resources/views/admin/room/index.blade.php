@@ -58,7 +58,7 @@
                                             @endif
                                         </td>
                                         <td class="center">${{ $room->cost }}</td>
-                                        @if ($room->cost == 1)
+                                        @if ($room->status == 1)
                                             <td class="center">Đã đặt</td>
                                         @else
                                             <td class="center">Còn trống</td>

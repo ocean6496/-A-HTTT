@@ -47,6 +47,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label>Trạng thái</label>
+                                        <select name="status" class="form-control">
+                                            <option value="0">Còn trống</option>
+                                            <option value="1">Đã đặt</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Giá phòng</label>
                                         <input type="text" name="cost" value="{{ $objItem->cost }}" class="form-control" />
                                     </div>

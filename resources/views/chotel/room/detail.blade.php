@@ -24,7 +24,8 @@
 							<div class="lastest">
 								@foreach($relateItems as $relateItem)
 									@php
-										$preview_text = str_limit($relateItem->description, '150');
+										$text = htmlspecialchars(trim(strip_tags($relateItem->description)));
+										$preview_text = str_limit($text, '150');
 									@endphp
 									<div class="lastest-top">
 									<img src="/storage/app/files/{{ $relateItem->picture }}" class="img-responsive gray" alt=""/>
