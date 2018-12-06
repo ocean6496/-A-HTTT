@@ -4,7 +4,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>Thêm khách hàng</h2>
+                <h2>Thêm đặt phòng</h2>
             </div>
         </div>
         <!-- /. ROW  -->
@@ -48,7 +48,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Room Book</label>
-                                        <input type="text" name="rid" class="form-control" />
+                                        <select name="rid" class="form-control">
+                                            @foreach ($rooms as $room)
+                                                <option value="{{ $room->rid }}">{{ $room->rname }}</option>
+                                            @endforeach
+                                        </select>
                                         @if ($errors->any())
                                             <h5 style="color: red">{{ $errors->first('rid') }}</h5>
                                         @endif

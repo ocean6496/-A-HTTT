@@ -60,8 +60,10 @@
                                         <td class="center">${{ $room->cost }}</td>
                                         @if ($room->status == 1)
                                             <td class="center">Đã đặt</td>
-                                        @else
+                                        @elseif($room->status == 0)
                                             <td class="center">Còn trống</td>
+                                        @else
+                                            <td class="center">Đang dùng</td>
                                         @endif
                                         <td class="center">
                                             <a href="{{ $urlEdit }}" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>

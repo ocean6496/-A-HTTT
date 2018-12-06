@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Customer extends Model
 {
@@ -19,7 +20,15 @@ class Customer extends Model
     }
 
     public function getItems() {
-    	return $this->orderBy('customer_id', 'DESC')->paginate(6);
+    	return $this->orderBy('customer_id', 'DESC')->paginate(5);
+    }
+
+    public function getNew() {
+        return DB::table('customer')
+                ->orderBy('customer_id', 'DESC')
+                ->offset(0)
+                ->limit(1)
+                ->get();
     }
 
     public function addItem($arItems) {

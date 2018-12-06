@@ -4,7 +4,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>Sửa người khách hàng</h2>
+                <h2>Sửa thông tin đặt phòng</h2>
             </div>
         </div>
         <!-- /. ROW  -->
@@ -36,11 +36,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Check_in</label>
-                                        <input type="text" name="check_in" value="{{ $customer->check_in }}" class="form-control" />
+                                        <input type="date" name="check_in" value="{{ $customer->check_in }}" class="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label>Check_out</label>
-                                        <input type="text" name="check_out" value="{{ $customer->check_out }}" class="form-control" />
+                                        <input type="date" name="check_out" value="{{ $customer->check_out }}" class="form-control" />
                                     </div>
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Sửa</button>
                                 </form>

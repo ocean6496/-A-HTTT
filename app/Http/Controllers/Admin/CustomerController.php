@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
 use App\Model\Customer;
+use App\Model\Room;
 
 class CustomerController extends Controller
 {
-	public function __construct(Customer $mCustomer) {
-		$this->mCustomer = $mCustomer;
+	public function __construct(Customer $mCustomer, Room $mRoom) {
+        $this->mCustomer = $mCustomer;
+		$this->mRoom = $mRoom;
 	}
 
     public function index() {
@@ -20,26 +22,34 @@ class CustomerController extends Controller
     }
 
     public function getAdd() {
-        return view('admin.customer.add');
+        $rooms = $this->mRoom->getRoomEmpty(); 
+
+        return view('admin.customer.add',compact('rooms'));
     }
 
     public function postAdd(CustomerRequest $request) {
+        $room = $this->mRoom->find($request->rid);
+        $check_out = date_create($request->check_out); 
+        $check_in = date_create($request->check_in); 
+        $countDate = date_diff($check_out, $check_in)->format('%a'); 
+        $cost = $room->cost * $countDate;
         $arItems = array(
                     'firstname' => $request->firstname,
                     'lastname' => $request->lastname,
                     'idcard' => $request->idcard,
                     'phone' => $request->phone,
-                    'rid' => $request->rid,
+                    'rid' => $room->rname,
                     'check_in' => $request->check_in,
-                    'check_out' => $request->check_out,   
-                );
+                    'check_out' => $request->check_out, 
+                    'cost' => $cost,  
+                ); 
         $resultAdd = $this->mCustomer->addItem($arItems);
 
         if ($resultAdd) {
-            $request->session()->flash('msg','Thêm khách hàng thành công!');
+            $request->session()->flash('msg','Thêm đặt phòng thành công!');
             return redirect()->route('admin.customer.index');
         } else {
-            $request->session()->flash('msg','Có lỗi khi thêm khách hàng!');
+            $request->session()->flash('msg','Có lỗi khi thêm đặt phòng!');
             return redirect()->route('admin.customer.index');
         }
     }
@@ -51,20 +61,26 @@ class CustomerController extends Controller
     }
 
     public function postEdit($id, Request $request) {
+        $room = $this->mRoom->findName($request->rid);
+        $check_out = date_create($request->check_out); 
+        $check_in = date_create($request->check_in); 
+        $countDate = date_diff($check_out, $check_in)->format('%a'); 
+        $cost = $room->cost * $countDate; 
         $arItems = array(
                     'idcard' => $request->idcard,
                     'phone' => $request->phone,
                     'rid' => $request->rid,
                     'check_in' => $request->check_in,
                     'check_out' => $request->check_out,
+                    'cost' => $cost,
                 );
         $resultEdit = $this->mCustomer->editItem($id, $arItems);
 
         if ($resultEdit) {
-            $request->session()->flash('msg', 'Sửa khách hàng thành công!');
+            $request->session()->flash('msg', 'Sửa đặt phòng thành công!');
             return redirect()->route('admin.customer.index'); 
         } else {
-            $request->session()->flash('msg', 'Có lỗi khi sửa khách hàng!');
+            $request->session()->flash('msg', 'Có lỗi khi sửa đặt phòng!');
             return redirect()->route('admin.customer.index');
         }
     }
@@ -73,10 +89,10 @@ class CustomerController extends Controller
     	$resultDelete = $this->mCustomer->deleteItem($id);
 
         if ($resultDelete) {
-            $request->session()->flash('msg', 'Xóa khách hàng thành công!');
+            $request->session()->flash('msg', 'Xóa đặt phòng thành công!');
             return redirect()->route('admin.customer.index'); 
         } else {
-            $request->session()->flash('msg', 'Có lỗi khi xóa khách hàng!');
+            $request->session()->flash('msg', 'Có lỗi khi xóa đặt phòng!');
             return redirect()->route('admin.customer.index');
         }
     }

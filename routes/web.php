@@ -294,3 +294,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 
 });
 
+Route::post('/ajax', [
+	'uses' => 'RoomController@index',
+	'as' => ''
+]);

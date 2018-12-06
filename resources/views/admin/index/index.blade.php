@@ -60,8 +60,8 @@
                     <i class="fa fa-user"></i>
                 </span>
                     <div class="text-box">
-                        <p class="main-text"><a href="{{ route('admin.customer.index') }}" title="">Quản lý khách hàng</a></p>
-                        <p class="text-muted">Có {{ $countCustomer }} khách hàng</p>
+                        <p class="main-text"><a href="{{ route('admin.customer.index') }}" title="">Quản lý đặt phòng</a></p>
+                        <p class="text-muted">Có {{ $countCustomer }} phòng đã đặt</p>
                     </div>
                 </div>
             </div>

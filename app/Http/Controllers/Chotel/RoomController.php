@@ -43,6 +43,13 @@ class RoomController extends Controller
     }
 
     public function postBook(BookRoomRequest $request, $id){
+        $room = $this->mRoom->find($id); 
+        $nameBook = $room->rname; 
+        $this->mRoom->editStatus($id);
+        $check_out = date_create($request->check_out); 
+        $check_in = date_create($request->check_in); 
+        $countDate = date_diff($check_out, $check_in)->format('%a'); 
+        $cost = $room->cost * $countDate; 
         $arItems = array(
                         'firstname' => $request->firstname,
                         'lastname' => $request->lastname,
@@ -50,12 +57,16 @@ class RoomController extends Controller
                         'phone' => $request->phone,
                         'check_in' => $request->check_in,
                         'check_out' => $request->check_out,
-                        'rid' => $id,
+                        'cost' => $cost,
+                        'rid' => $nameBook,
                     ); 
         $resultAdd = $this->mCustomer->addItem($arItems);
+        // $test = $this->mCustomer->getNew(); dd($test);
+        // $customer_id = $test->customer_id; dd($customer_id);
+        // $this->mRoom->editStatus($id, $customer_id);
         if ($resultAdd) {
             $request->session()->flash('msg', 'Book congragulation!');
-            return redirect()->route('chotel.room.book', $arItems['rid']);
+            return redirect()->route('chotel.room.book', $id);
         } else {
 
         }

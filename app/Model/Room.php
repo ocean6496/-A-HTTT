@@ -57,9 +57,22 @@ class Room extends Model
     	return $this->where('rid', '=', $id)->update($arItem);
     }
 
+    public function editStatus($id){
+
+        return DB::table('rooms')->where('rid', $id)->update(['status' => 1]);
+    }
+
     public function deleteItem($id){
 
     	return $this->where('rid', '=', $id)->delete();
+    }
+
+    public function findName($name) {
+        return $this->where('rname', '=', $name)->first();
+    }
+
+    public function getRoomEmpty() {
+        return $this->where('status', '=', 0)->get();
     }
     
 }

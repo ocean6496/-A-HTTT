@@ -54,7 +54,7 @@
 								<div class="rates-text">
 									<a href="{{ route('chotel.room.detail', ['slug' => $slug, 'id' => $id]) }}"><h4>{{ $objItem->rname }}</h4></a>
 									<p>{{ $preview_text }}</p>
-									<h5>$260.00 <span class="small">/ Night</span></h5>
+									<h5>${{ $objItem->cost }}<span class="small">/ Night</span></h5>
 								</div>
 							</div>
 						@else
@@ -73,7 +73,7 @@
 								<div class="rates-text1">
 									<a href="{{ route('chotel.room.detail', ['slug' => $slug, 'id' => $id]) }}"><h4>{{ $objItem->rname }}</h4></a>
 									<p>{{ $preview_text }}</p>
-									<h5>$260.00 <span class="small">/ Night</span></h5>
+									<h5>${{ $objItem->cost }}<span class="small">/ Night</span></h5>
 								</div>
 								<div class="clearfix"></div>
 							</div>

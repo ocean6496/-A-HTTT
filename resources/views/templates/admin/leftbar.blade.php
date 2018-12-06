@@ -22,7 +22,7 @@
                 <a class="{{ route::currentRouteName() == 'admin.user.index' ? 'active-menu' : '' }}" href="{{ route('admin.user.index') }}"><i class="fa fa-user fa-3x"></i> Quản lý người dùng</a>
             </li>
             <li>
-                <a class="{{ route::currentRouteName() == 'admin.customer.index' ? 'active-menu' : '' }}" href="{{ route('admin.customer.index') }}"><i class="fa fa-rocket fa-3x"></i> Quản lý khách hàng</a>
+                <a class="{{ route::currentRouteName() == 'admin.customer.index' ? 'active-menu' : '' }}" href="{{ route('admin.customer.index') }}"><i class="fa fa-rocket fa-3x"></i> Quản lý đặt phòng</a>
             </li>
             <li>
                 <a class="{{ route::currentRouteName() == 'admin.about.index' ? 'active-menu' : '' }}" href="{{ route('admin.about.index') }}"><i class="fa fa-folder-open fa-3x"></i> Quản lý giới thiệu</a>

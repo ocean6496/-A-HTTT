@@ -46,6 +46,7 @@
                                         <select class="form-control" name="status">
                                             <option value="0">Còn trống</option>
                                             <option value="1">Đã đặt</option>
+                                            <option value="2">Đang dùng</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

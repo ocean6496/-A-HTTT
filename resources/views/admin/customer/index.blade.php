@@ -4,7 +4,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>Quản lý khách hàng</h2>
+                <h2>Quản lý đặt phòng</h2>
             </div>
         </div>
         <!-- /. ROW  -->
@@ -34,6 +34,7 @@
                                         <th>Room Book</th>
                                         <th>Check In</th>
                                         <th>Check Out</th>
+                                        <th>Cost</th>
                                         <th width="160px">Chức năng</th>
                                     </tr>
                                 </thead>
@@ -52,6 +53,7 @@
                                         <td>{{ $customer->rid }}</td>
                                         <td>{{ $customer->check_in }}</td>
                                         <td>{{ $customer->check_out }}</td>
+                                        <td>{{ $customer->cost }}</td>
                                         <td class="center">
                                             <a href="{{ $urlEdit }}" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
                                             <a href="{{ $urlDelete }}" title="" onclick="return confirm(&#39;Bạn có chắn chắn muốn xóa&#39;)" class="btn btn-danger"><i class="fa fa-pencil"></i> Xóa</a>
@@ -64,7 +66,7 @@
                                 <div class="col-sm-6" style="text-align: right;">
                                     <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                                         <ul class="pagination">
-                                           
+                                           {{ $customers->links() }}
                                         </ul>
                                     </div>
                                 </div>
